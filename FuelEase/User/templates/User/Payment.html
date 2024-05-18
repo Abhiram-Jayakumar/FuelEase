@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Font Awesome -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.min.css"
+      rel="stylesheet"
+    />
+    <!-- MDB -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.2.0/mdb.umd.min.js"
+    ></script>
+    <style>
+      body {
+        font-family: "Roboto", sans-serif;
+        background-color: #f8f9fa;
+      }
+
+      .card {
+        background-color: #fff;
+        border-radius: 15px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+      }
+
+      .card-header {
+        background-color: transparent;
+        border-bottom: none;
+      }
+
+      .card-title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .card-subtitle {
+        font-size: 18px;
+        font-weight: 500;
+        color: #666;
+        margin-bottom: 20px;
+      }
+
+      .form-outline {
+        position: relative;
+        margin-bottom: 20px;
+      }
+
+      .form-outline input {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #0e0e0e;
+        border-radius: 5px;
+      }
+
+      .form-outline input:focus {
+        outline: none;
+        border-color: #4caf50;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.5);
+      }
+
+      .form-outline label {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        transform: translateY(-50%);
+        color: #0d0c0c;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        pointer-events: none;
+      }
+
+      .form-outline input:valid ~ label,
+      .form-outline input:focus ~ label {
+        top: 5px;
+        left: 10px;
+        font-size: 12px;
+        color: #4caf50;
+      }
+
+      .btn-success {
+        background-color: #4caf50;
+        border: none;
+        border-radius: 5px;
+        padding: 12px 0;
+        font-size: 18px;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
+
+      .btn-success:hover {
+        background-color: #45a049;
+        transition: background-color 0.3s;
+      }
+
+      .btn-success:focus {
+        outline: none;
+        box-shadow: none;
+      }
+    </style>
+  </head>
+  <body>
+    <section
+      class="p-4 p-md-5"
+      style="
+        background-image: url(https://mdbcdn.b-cdn.net/img/Photos/Others/background3.webp);
+      "
+    >
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-lg-8 col-xl-5">
+          <div class="card rounded-3">
+            <div class="card-body p-4">
+              <div class="text-center mb-4">
+                <h3>Settings</h3>
+                <h6>Payment</h6>
+              </div>
+              <form action="{% url 'User:Payment' booking.id %}" method="POST">
+                {% csrf_token %}
+                <p class="fw-bold mb-4 pb-2">Saved cards:</p>
+
+                <div class="d-flex flex-row align-items-center mb-4 pb-1">
+                  <img
+                    class="img-fluid"
+                    src="https://img.icons8.com/color/48/000000/mastercard-logo.png"
+                  />
+                  <div class="flex-fill mx-3">
+                    <div data-mdb-input-init class="form-outline">
+                      <input
+                        type="text"
+                        id="formControlLgXc"
+                        class="form-control form-control-lg"
+                        value="**** **** **** ****"
+                      />
+                      <label class="form-label" for="formControlLgXc"
+                        >Card Number</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                <p class="fw-bold mb-4">Add new card:</p>
+
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <input
+                    type="text"
+                    id="formControlLgXsd"
+                    class="form-control form-control-lg"
+                    value="{{ user.username }}"
+                  />
+                  <label class="form-label" for="formControlLgXsd"
+                    >Cardholder's Name</label
+                  >
+                </div>
+                <div data-mdb-input-init class="form-outline mb-4">
+                  <input
+                    type="text"
+                    id="formControlLgXsd"
+                    class="form-control form-control-lg"
+                    value="{{ booking.total_cost }}"
+                  />
+                  <label class="form-label" for="formControlLgXsd"
+                    >Total Amount Payable</label
+                  >
+                </div>
+
+                <div class="row mb-4">
+                  <div class="col-7">
+                    <div data-mdb-input-init class="form-outline">
+                      <input
+                        type="text"
+                        id="formControlLgXM"
+                        class="form-control form-control-lg"
+                        value="1234 5678 1234 5678"
+                      />
+                      <label class="form-label" for="formControlLgXM"
+                        >Card Number</label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-3">
+                    <div data-mdb-input-init class="form-outline">
+                      <input
+                        type="password"
+                        id="formControlLgExpk"
+                        class="form-control form-control-lg"
+                        placeholder="MM/YYYY"
+                      />
+                      <label class="form-label" for="formControlLgExpk"
+                        >Expire</label
+                      >
+                    </div>
+                  </div>
+                  <div class="col-2">
+                    <div data-mdb-input-init class="form-outline">
+                      <input
+                        type="password"
+                        id="formControlLgcvv"
+                        class="form-control form-control-lg"
+                        placeholder="Cvv"
+                      />
+                      <label class="form-label" for="formControlLgcvv"
+                        >Cvv</label
+                      >
+                    </div>
+                  </div>
+                </div>
+
+                  
+                  <button type="submit" class="btn btn-success btn-lg btn-block">PAY NOW</button>
+              </form>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - FuelEase</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<style>
+        .header {
+            background-color: #f8f9fa;
+            padding: 20px 0;
+        }
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #007bff;
+        }
+        .main-content {
+            padding: 40px 0;
+        }
+        .team img {
+            border-radius: 50%;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="/"
+            class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap" />
+            </svg>
+            <span class="fs-4"><b><span style="color: blue;">F</span>uel <span style="color: rgb(255, 0, 0);">E</span>ase</b></span>
+        </a>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="{% url 'User:index' %}" class="nav-link active" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="{% url 'User:user_register' %}" class="nav-link">Register</a></li>
+            <li class="nav-item"><a href="{% url 'User:login' %}" class="nav-link">Login</a></li>
+            <li class="nav-item"><a href="{% url 'User:complaintdemo'%}" class="nav-link">Complaints</a></li>
+            <li class="nav-item"><a href="{% url 'User:about' %}" class="nav-link">About</a></li>
+        </ul>
+    </header>
+
+    <div class="container main-content">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1>About FuelEase</h1>
+                <p class="lead">Your reliable partner for fuel booking and delivery services.</p>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h2>Our Mission</h2>
+                <p>FuelEase is dedicated to providing a seamless and efficient fuel booking experience. Our mission is to ensure that you have access to quality fuel whenever and wherever you need it, with the convenience of online booking and doorstep delivery.</p>
+            </div>
+            <div class="col-md-6">
+                <h2>Our Services</h2>
+                <ul>
+                    <li>Online Fuel Booking</li>
+                    <li>Doorstep Fuel Delivery</li>
+                    <li>Fuel Price Comparison</li>
+                    <li>24/7 Customer Support</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row mt-4 team">
+            <div class="col-12 text-center">
+                <h2>Meet the Team</h2>
+                <br>
+            </div>
+            <div class="col-md-4 text-center">
+                <img src="https://i.postimg.cc/FF8G9BHm/image.png" alt="Team Member 1" class="img-fluid" style="width: 150px;">
+                <h5 class="mt-2">John Doe</h5>
+                <p>Assosiative director</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <img src="https://i.postimg.cc/5tsqDPRh/image.png" alt="Team Member 2" class="img-fluid" style="width: 150px;">
+                <h5 class="mt-2">Mike Jhon</h5>
+                <p>Chief Operations Officer</p>
+            </div>
+            <div class="col-md-4 text-center">
+                <img src="https://i.postimg.cc/SRM62mx4/image.png" alt="Team Member 3" class="img-fluid" style="width: 150px;">
+                <h5 class="mt-2">Jane Smith</h5>
+                <p>Chief Technology Officer</p>
+            </div>
+        </div>
+    </div>
+<br><br><br>
+    <!-- FOOTER -->
+    <footer class="py-5 text-bg-dark p-3">
+        <div class="row">
+            <div class="col-6 col-md-2 mb-3">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark text-bg-white">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Features</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Pricing</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">About</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3 ">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2 "><a href="#" class="nav-link p-0 text-bg-dark">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Features</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Pricing</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">About</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3 ">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0  text-bg-dark ">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Features</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Pricing</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">About</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-5 offset-md-1 mb-3">
+                <form>
+                    <h5>Subscribe to our newsletter</h5>
+                    <p>Monthly digest of what's new and exciting from us.</p>
+                    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                        <label for="newsletter1" class="visually-hidden">Email address</label>
+                        <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

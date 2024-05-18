@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fuel Pump Registration</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f5f5;
+      }
+
+      .container {
+        width: 80%;
+        margin: 20px auto;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      form {
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      table {
+        width: 100%;
+      }
+
+      h4 {
+        margin: 10px 0;
+      }
+
+      input[type="text"],
+      input[type="number"],
+      input[type="email"],
+      input[type="password"] {
+        width: calc(100% - 10px);
+        padding: 10px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 10px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0056b3;
+      }
+      .register-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .register-button:hover {
+            background-color: #0056b3;
+        }
+
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+      <a href="/"
+          class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+          <svg class="bi me-2" width="40" height="32">
+              <use xlink:href="#bootstrap" />
+          </svg>
+          <span class="fs-4"><b><span style="color: blue;">F</span>uel <span style="color: rgb(255, 0, 0);">E</span>ase</b></span>
+      </a>
+
+      <ul class="nav nav-pills">
+          <li class="nav-item"><a href="{% url 'User:index' %}" class="nav-link active" aria-current="page">Home</a></li>
+          <li class="nav-item"><a href="{% url 'User:user_register' %}" class="nav-link">Register</a></li>
+          <li class="nav-item"><a href="{% url 'User:login' %}" class="nav-link">Login</a></li>
+          <li class="nav-item"><a href="{% url 'User:complaintdemo'%}" class="nav-link">Complaints</a></li>
+          <li class="nav-item"><a href="{% url 'User:about' %}" class="nav-link">About</a></li>
+      </ul>
+  </header>
+    <div class="container">
+      <h1>PUMP REGISTRATION</h1>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+          <tr>
+            <td><h4>Pump-Name:</h4></td>
+            <td>
+              <input
+                type="text"
+                required
+                name="name"
+                pattern="[a-zA-Z ]+"
+                size="70"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><h4>Address:</h4></td>
+            <td><input type="text" required name="add" size="70" /></td>
+          </tr>
+          <tr>
+            <td><h4>Contact:</h4></td>
+            <td>
+              <input
+                type="number"
+                required
+                name="phone"
+                pattern="[6789][0-9]{9}"
+                size="70"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td><h4>Email:</h4></td>
+            <td><input type="email" required name="email" size="70" /></td>
+          </tr>
+          <tr>
+            <td><h4>Gst-No:</h4></td>
+            <td><input type="text" required name="lic" size="70" /></td>
+          </tr>
+          <tr>
+            <td><h4>Password:</h4></td>
+            <td>
+              <input
+                type="password"
+                required
+                name="pass"
+                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+                size="70"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              Select location from map
+              <input
+                id="pac-input"
+                class="controls"
+                type="text"
+                placeholder="Search Box"
+              />
+              <div id="map"></div>
+              <input
+                onclick="deleteMarkers();"
+                type="button"
+                value="Refresh Location"
+              />
+            </td>
+          </tr>
+          <tr>
+            <td colspan="2">
+                <button class="register-button" type="submit"><b>Register</b></button>
+            </td>
+          </tr>
+        </table>
+        <input
+          type="text"
+          id="l1"
+          style="visibility: hidden"
+          required
+          name="l1"
+        />
+        <input
+          type="text"
+          id="l2"
+          style="visibility: hidden"
+          required
+          name="l2"
+        />
+      </form>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+      function initAutocomplete() {
+        var map = new google.maps.Map(document.getElementById("map"), {
+          center: { lat: 10.1076, lng: 76.3457 },
+          zoom: 13,
+          mapTypeId: "roadmap",
+        });
+
+        google.maps.event.addListener(map, "click", function (event) {
+          var clickLat = event.latLng.lat();
+          var clickLon = event.latLng.lng();
+
+          document.getElementById("l1").value = clickLat.toFixed(5);
+          document.getElementById("l2").value = clickLon.toFixed(5);
+
+          var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(clickLat, clickLon),
+            map: map,
+            draggable: true,
+          });
+        });
+
+        var input = document.getElementById("pac-input");
+        var searchBox = new google.maps.places.SearchBox(input);
+        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+        map.addListener("bounds_changed", function () {
+          searchBox.setBounds(map.getBounds());
+        });
+
+        var markers = [];
+        searchBox.addListener("places_changed", function () {
+          var places = searchBox.getPlaces();
+
+          if (places.length == 0) {
+            return;
+          }
+
+          markers.forEach(function (marker) {
+            marker.setMap(null);
+          });
+          markers = [];
+
+          var bounds = new google.maps.LatLngBounds();
+          places.forEach(function (place) {
+            if (!place.geometry) {
+              console.log("Returned place contains no geometry");
+              return;
+            }
+            var icon = {
+              url: place.icon,
+              size: new google.maps.Size(71, 71),
+              origin: new google.maps.Point(0, 0),
+              anchor: new google.maps.Point(17, 34),
+              scaledSize: new google.maps.Size(25, 25),
+            };
+
+            markers.push(
+              new google.maps.Marker({
+                map: map,
+                icon: icon,
+                title: place.name,
+                position: place.geometry.location,
+              })
+            );
+
+            if (place.geometry.viewport) {
+              bounds.union(place.geometry.viewport);
+            } else {
+              bounds.extend(place.geometry.location);
+            }
+          });
+          map.fitBounds(bounds);
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRhhnbNUXPX9_JYKnroSAex2-1KFaSmwQ&libraries=places&callback=initAutocomplete"></script>
+
+<br><br><br><br><br><br>
+<!-- FOOTER -->
+<footer class="py-5 text-bg-dark p-3">
+  <div class="row">
+      <div class="col-6 col-md-2 mb-3">
+          <h5>Section</h5>
+          <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark text-bg-white">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Features</a>
+              </li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Pricing</a>
+              </li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">About</a>
+              </li>
+          </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3 ">
+          <h5>Section</h5>
+          <ul class="nav flex-column">
+              <li class="nav-item mb-2 "><a href="#" class="nav-link p-0 text-bg-dark">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Features</a>
+              </li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Pricing</a>
+              </li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">About</a>
+              </li>
+          </ul>
+      </div>
+
+      <div class="col-6 col-md-2 mb-3 ">
+          <h5>Section</h5>
+          <ul class="nav flex-column">
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0  text-bg-dark ">Home</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Features</a>
+              </li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Pricing</a>
+              </li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">FAQs</a></li>
+              <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">About</a>
+              </li>
+          </ul>
+      </div>
+
+      <div class="col-md-5 offset-md-1 mb-3">
+          <form>
+              <h5>Subscribe to our newsletter</h5>
+              <p>Monthly digest of what's new and exciting from us.</p>
+              <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                  <label for="newsletter1" class="visually-hidden">Email address</label>
+                  <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                  <button class="btn btn-primary" type="button">Subscribe</button>
+              </div>
+          </form>
+      </div>
+  </div>
+</footer>
+
+  </body>
+</html>

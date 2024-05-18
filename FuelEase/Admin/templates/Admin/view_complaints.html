@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin View Complaints</title>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        <style>
+            .card {
+                width: 70%;
+                margin: 0 auto;
+                border-radius: 10px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                background-color: #f8f9fa;
+                padding: 20px;
+            }
+        
+            .card-title {
+                font-size: 20px;
+                margin-bottom: 15px;
+            }
+        
+            .card-text {
+                font-size: 16px;
+                margin-bottom: 10px;
+            }
+        
+            .btn-primary {
+                margin-top: 10px;
+            }
+        </style>
+</head>
+<body>
+    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+        <a href="/"
+            class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
+            <svg class="bi me-2" width="40" height="32">
+                <use xlink:href="#bootstrap" />
+            </svg>
+            <span class="fs-4"><b><span style="color: blue;">F</span>uel <span style="color: rgb(255, 0, 0);">E</span>ase</b></span>
+        </a>
+
+        <ul class="nav nav-pills">
+            <li class="nav-item"><a href="{% url 'Admin:Admin_home' %}" class="nav-link active" aria-current="page">Home</a></li>
+            <li class="nav-item"><a href="{% url 'Admin:view_registered_pumps' %}" class="nav-link">View Pump Registation</a></li>
+            <li class="nav-item"><a href="{%url 'Admin:view_admin_profile'%}" class="nav-link">Profile</a></li>
+            <li class="nav-item"><a href="{%url 'Admin:view_complaints'%}" class="nav-link">View_Complaints</a></li>
+            <li class="nav-item"><a href="{% url 'Admin:most_selling_items'%}" class="nav-link">most_selling_items</a></li>
+            <li class="nav-item"><a href="{% url 'User:index'%}" class="nav-link">Logout</a></li>
+        </ul>
+    </header>
+    <h1 align="center">Admin View Complaints</h1>
+    <br>
+    <div class="card">
+        <div class="card-header">
+            <h3>User Complaints</h3>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Description</th>
+                        <th>Admin Reply</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for complaint in user_complaints %}
+                    <tr>
+                        <td>{{ complaint.subject }}</td>
+                        <td>{{ complaint.description }}</td>
+                        <td>{{ complaint.admin_reply }}</td>
+                        <td>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="complaint_type" value="user">
+                                <input type="hidden" name="complaint_id" value="{{ complaint.id }}">
+                                <textarea name="admin_reply" placeholder="Reply to user complaint"></textarea>
+                                <button type="submit" class="btn btn-primary" onclick="user()">Reply</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <script>
+                    function user() {
+                        alert("Replied for User Complaint");
+                    }
+                </script>
+            
+            </table>
+        </div>
+    </div>
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h3>Pump Complaints</h3>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Description</th>
+                        <th>Admin Reply</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for complaint in pump_complaints %}
+                    <tr>
+                        <td>{{ complaint.subject }}</td>
+                        <td>{{ complaint.description }}</td>
+                        <td>{{ complaint.admin_reply }}</td>
+                        <td>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="complaint_type" value="pump">
+                                <input type="hidden" name="complaint_id" value="{{ complaint.id }}">
+                                <textarea name="admin_reply" placeholder="Reply to pump complaint"></textarea>
+                                <button type="submit" class="btn btn-primary" onclick="Pump()">Reply</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <script>
+                    function Pump() {
+                        alert("Replied for Pump Complaint");
+                    }
+                </script>
+            
+            </table>
+        </div>
+    </div>
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h3>Mechanic Complaints</h3>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Description</th>
+                        <th>Admin Reply</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for complaint in mechanic_complaints %}
+                    <tr>
+                        <td>{{ complaint.title }}</td>
+                        <td>{{ complaint.description }}</td>
+                        <td>{{ complaint.admin_reply }}</td>
+                        <td>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="complaint_type" value="mechanic">
+                                <input type="hidden" name="complaint_id" value="{{ complaint.id }}">
+                                <textarea name="admin_reply" placeholder="Reply to mechanic complaint"></textarea>
+                                <button type="submit" class="btn btn-primary" onclick="Mech()">Reply</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <script>
+                    function Mech() {
+                        alert("Replied for Mechnaic Complaint");
+                    }
+                </script>
+            
+            </table>
+        </div>
+    </div>
+    <br><br>
+    <div class="card">
+        <div class="card-header">
+            <h3>Delivery Boy Complaints</h3>
+        </div>
+        <div class="card-body">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Subject</th>
+                        <th>Description</th>
+                        <th>Admin Reply</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for complaint in delivery_boy_complaints %}
+                    <tr>
+                        <td>{{ complaint.title }}</td>
+                        <td>{{ complaint.description }}</td>
+                        <td>{{ complaint.admin_reply }}</td>
+                        <td>
+                            <form method="post">
+                                {% csrf_token %}
+                                <input type="hidden" name="complaint_type" value="delivery_boy">
+                                <input type="hidden" name="complaint_id" value="{{ complaint.id }}">
+                                <textarea name="admin_reply" placeholder="Reply to delivery boy complaint"></textarea>
+                                <button type="submit" class="btn btn-primary" onclick="Del()">Reply</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                <script>
+                    function Del() {
+                        alert("Replied for Delivery-Guy Complaint");
+                    }
+                </script>
+            
+            </table>
+        </div>
+    </div>
+    <br><br><br><br><br><br><br>
+    <!-- FOOTER -->
+    <footer class="py-5 text-bg-dark p-3">
+        <div class="row">
+            <div class="col-6 col-md-2 mb-3">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark text-bg-white">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Features</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Pricing</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">About</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3 ">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2 "><a href="#" class="nav-link p-0 text-bg-dark">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Features</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Pricing</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">About</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-6 col-md-2 mb-3 ">
+                <h5>Section</h5>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0  text-bg-dark ">Home</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Features</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">Pricing</a>
+                    </li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">FAQs</a></li>
+                    <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-bg-dark">About</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-5 offset-md-1 mb-3">
+                <form>
+                    <h5>Subscribe to our newsletter</h5>
+                    <p>Monthly digest of what's new and exciting from us.</p>
+                    <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                        <label for="newsletter1" class="visually-hidden">Email address</label>
+                        <input id="newsletter1" type="text" class="form-control" placeholder="Email address">
+                        <button class="btn btn-primary" type="button">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,99 @@
+
+                                  just basic discription of my idea the final implementation may have differ
+
+5 Users
+
+>Admin
+>User
+>Mechanic
+>Delivery Boy
+>Pump
+ 
+
+every users can update details and passwords
+
+
+*Admin
+1.Approve Pumps to Registerd in the system
+2. Reject Pumps That Accepted
+3.View Complaints BY All othe three Users
+
+*User
+1. Register and Login to the system 
+2. Search Neraest Pump To The User
+3. Book fuels & (Book Service( Book Mechanic )) 
+4. Paying Fuel Money
+5. File Complaint
+6. view orders done by the user past decades
+
+*Mechanic
+1. Login to the sytem 
+2. View Request By the Pump
+3. Accept Or Reject Request
+4. File compliant
+
+*Delivery Boy
+1.Login to the System
+2. View request from Pump
+3.Accept Or Reject Request
+
+*Pump
+1. register and login to the system
+2. add fuels (fuels name , fuel Quentity, Perticular Fuel Price)
+3. Pump register (Mechnaic,Deliveryboy)
+4. Pump can file Complaint to admin
+5. pump accept/ reject user fuel request
+6. pump assign delivery boy to deliver fuel to the customer(Request)
+7. Pump assign mechnaic to service the user(Request)
+8. view all bookings
+9.  edit fuels Quantity
+
+
+
+
+Admin
+- when the pump regisred into the system the admin check the pump given details is coorect when the details are valid he accept the pump request
+- the admin can reject the accepted pumps from the system
+- admin can view all  other users complaints   by the  role the admin can know who is file the complaint
+
+
+User
+- user can register and login to the system
+- the user can serach the nearest pump by geolocation
+- user can book fuels that avail in that perticular pump that he choosen  & he can choose that perticular pump mechanic for services
+- user can pay for the fuel he orderd
+- user can file complaint
+
+Mechanic
+- Mechnaic can login to the system
+- View Pump request (Accept/Reject)
+- file complaint to the admin
+
+Delivery boy
+-login to the sytem
+- view pump request to deliver the fuel(Accept/reject)
+- file complaint to the admin
+
+Pump
+- Register and login to the sytem
+- Add fuels 
+- register both mechnaic and delivery boy
+- pump can view bookings request from user (accept/reject) 
+- pump can file complaint to the admin
+- if pump accept the fuel request  the pump request the delivery boy the deliver the fuel
+- if the user request for an mechnaic the pump accept the request and request to the mechanic to assit the user
+- pump can view all bookings happens in his sysytem past decades
+- pump can view mechnaics and delivery boys he added and he can remove any one he wanted from the syetem
+
+
+
+
+
+
+Describing
+
+ the user register and login to the system and he serach for nearset pump to him by geolocation the user find multiple pumps that are accepted by the admin when  the user choose an pump the user can only view the  choosen pump added fuels  and the user can choose services the current pump added mechnaic when the user want fuels he request for how much and what type of fuels he needed  and also he need only mechnaic he request for mechanic to the pump
+the pump can view the user request for fuel and mechnaic the pump can accept or reject the request from the user when the pumpept the  the fuel request he assign a delivery boy to deliver the fuel the assign job will be requested to the pump assigned delivery boy the delivery boy can accept or rejcet the request from the pump if he accept the request he can view the user current location and fuel type and queantity and total cost of booking the fuel details 
+when the delivery boy reaches and deliver the fuel the deliver boy set his status deliverd and that time the user intiate the fuel amount
+after that the pump can view the payment status of the fuel
+whent the user need a mechnaic he request to the pump the pump accept it or reject the request if the pump accept the request the pump assign a mechnaic in that time the pump choosen mechnaic will get an request from the pump to service a user if the mechnaic accept the request he views the user current location
